@@ -1,8 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 
 const links = [
-  { to: "/programas", label: "Programas" },
   { to: "/ejercicios", label: "Ejercicios" },
+  { to: "/programas", label: "Programas" },
   { to: "/perfil", label: "Perfil" },
 ];
 
@@ -17,7 +17,6 @@ export default function MainLayout() {
           borderBottom: "1px solid #ddd",
         }}
       >
-        <strong>Gim-fit</strong>
         {links.map((l) => (
           <NavLink
             key={l.to}

@@ -1,6 +1,11 @@
 import { api } from "../../lib/api";
 
-export const getExercises = () => api("/exercises");
+export const getExercises = ({ page = 1, pageSize = 10, type, name } = {}) => {
+  const params = new URLSearchParams({ page, pageSize });
+  if (type) params.set("type", type);
+  if (name) params.set("name", name);
+  return api(`/exercises?${params}`);
+};
 
 export const getExercise = (id) => api(`/exercises/${id}`);
 
