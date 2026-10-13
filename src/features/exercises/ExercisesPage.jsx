@@ -10,6 +10,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { getExercises } from "./exercisesApi";
+import { Link } from "react-router-dom";
 
 /* ---------- Estilos por tipo ---------- */
 
@@ -48,15 +49,18 @@ const gridClasses =
   "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
 
 /* ---------- Tarjeta ---------- */
-
 function ExerciseCard({ exercise }) {
-  const { name, type, avatarThumbnail, avatar, video, muscleGroup } = exercise;
+  const { id, name, type, avatarThumbnail, avatar, video, muscleGroups } =
+    exercise;
   const image = avatarThumbnail || avatar;
   const style = TYPE_STYLES[type] ?? DEFAULT_STYLE;
   const Icon = style.icon;
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition duration-200 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
+    <Link
+      to={`/ejercicios/${id}`}
+      className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition duration-200 hover:border-slate-300 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-indigo-500 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700"
+    >
       <div
         className={`relative aspect-[16/10] overflow-hidden bg-gradient-to-br ${style.tile}`}
       >
@@ -97,14 +101,14 @@ function ExerciseCard({ exercise }) {
             {style.label}
           </span>
 
-          {muscleGroup && (
-            <span className="truncate text-xs text-slate-500 dark:text-slate-400">
-              {muscleGroup}
+          {muscleGroups?.length > 0 && (
+            <span className="truncate text-xs capitalize text-slate-500 dark:text-slate-400">
+              {muscleGroups.slice(0, 2).join(", ")}
             </span>
           )}
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
 

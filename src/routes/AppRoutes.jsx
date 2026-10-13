@@ -6,6 +6,7 @@ import ExercisesPage from "../features/exercises/ExercisesPage";
 import ProgramsPage from "../features/programs/ProgramsPage";
 import ProgramDetailPage from "../features/programs/ProgramDetailPage";
 import ProfilePage from "../features/profile/ProfilePage";
+import ExerciseDetailPage from "../features/exercises/ExerciseDetailPage";
 import NotFound from "../pages/NotFound";
 
 export default function AppRoutes() {
@@ -15,14 +16,15 @@ export default function AppRoutes() {
 
       {/* Todo lo de aquí dentro requiere sesión */}
       <Route element={<ProtectedRoute />}>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Navigate to="/programas" replace />} />
-          <Route path="/ejercicios" element={<ExercisesPage />} />
-          <Route path="/programas" element={<ProgramsPage />} />
-          <Route path="/programas/:programId" element={<ProgramDetailPage />} />
-          <Route path="/perfil" element={<ProfilePage />} />
-        </Route>
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Navigate to="/programas" replace />} />
+        <Route path="/ejercicios" element={<ExercisesPage />} />
+        <Route path="/ejercicios/:id" element={<ExerciseDetailPage />} />
+        <Route path="/programas" element={<ProgramsPage />} />
+        <Route path="/programas/:programId" element={<ProgramDetailPage />} />
+        <Route path="/perfil" element={<ProfilePage />} />
       </Route>
+    </Route>
 
       <Route path="*" element={<NotFound />} />
     </Routes>
