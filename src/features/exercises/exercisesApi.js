@@ -9,8 +9,8 @@ export const getExercises = ({ page = 1, pageSize = 10, type, name } = {}) => {
 
 export const getExercise = (id) => api(`/exercises/${id}`);
 
-export const createExercise = (data) =>
-  api("/exercises", { method: "POST", body: JSON.stringify(data) });
+export const createExercise = (formData) =>
+  api("/exercises", { method: "POST", body: formData });
 
 export const updateExercise = (id, data) =>
   api(`/exercises/${id}`, { method: "PUT", body: JSON.stringify(data) });

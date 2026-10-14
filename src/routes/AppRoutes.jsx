@@ -8,6 +8,7 @@ import ProgramDetailPage from "../features/programs/ProgramDetailPage";
 import ProfilePage from "../features/profile/ProfilePage";
 import ExerciseDetailPage from "../features/exercises/ExerciseDetailPage";
 import NotFound from "../pages/NotFound";
+import NewExercisePage from "../features/exercises/NewExercisePage";
 
 export default function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ export default function AppRoutes() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Navigate to="/programas" replace />} />
         <Route path="/ejercicios" element={<ExercisesPage />} />
+        <Route path="/ejercicios/nuevo" element={<NewExercisePage />} />
         <Route path="/ejercicios/:id" element={<ExerciseDetailPage />} />
         <Route path="/programas" element={<ProgramsPage />} />
         <Route path="/programas/:programId" element={<ProgramDetailPage />} />

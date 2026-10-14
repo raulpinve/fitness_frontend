@@ -8,9 +8,11 @@ import {
   AlertCircle,
   ChevronLeft,
   ChevronRight,
+  Plus,
 } from "lucide-react";
 import { getExercises } from "./exercisesApi";
 import { Link } from "react-router-dom";
+import { MUSCLE_LABELS } from "./exerciseOptions";
 
 /* ---------- Estilos por tipo ---------- */
 
@@ -108,6 +110,12 @@ function ExerciseCard({ exercise }) {
           )}
         </div>
       </div>
+      <span className="truncate text-xs text-slate-500 dark:text-slate-400">
+      {muscleGroups
+        .slice(0, 2)
+        .map((m) => MUSCLE_LABELS[m] ?? m)
+        .join(", ")}
+    </span>
     </Link>
   );
 }
@@ -345,6 +353,13 @@ export default function ExercisesPage() {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <SearchInput value={search} onChange={setSearch} />
           <TypeFilter value={type} onChange={handleTypeChange} />
+          <Link
+            to="/ejercicios/nuevo"
+            className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500"
+          >
+            <Plus className="h-4 w-4" />
+            Nuevo
+          </Link>
         </div>
       </header>
 
@@ -388,6 +403,7 @@ export default function ExercisesPage() {
           disabled={loading}
         />
       )}
+      
     </main>
   );
 }

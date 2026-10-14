@@ -14,7 +14,7 @@ const ERRORES = {
 };
 
 export default function LoginPage() {
-  const { user, loading, login, loginWithGoogle } = useAuth();
+  const { user, loading, authError, login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -73,6 +73,10 @@ export default function LoginPage() {
       </form>
 
       <hr style={{ margin: "20px 0" }} />
+
+      {(error || authError) && (
+        <p style={{ color: "crimson", margin: 0 }}>{error || authError}</p>
+      )}
 
       <button
         type="button"
